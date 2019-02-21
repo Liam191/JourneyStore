@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">JourneyStore</string>
+    <string name="journeylist_addjourney_btntext">Add Journey</string>
+</resources>
