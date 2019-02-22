@@ -4,8 +4,8 @@ import java.util.List;
 
 import dagger.Component;
 
-@Component(modules = JourneyRepositoryModule.class)
+@Component(modules = {JourneyRepositoryModule.class})
 public interface JourneyRepositoryComponent {
 
-    JourneyRepositoryComponent getJourneyRepositoryComponent();
+    JourneyRepository journeyRepository();
 }

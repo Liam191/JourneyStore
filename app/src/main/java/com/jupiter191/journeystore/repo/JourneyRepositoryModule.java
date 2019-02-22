@@ -6,7 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-class JourneyRepositoryModule {
+public class JourneyRepositoryModule {
 
     @Provides
     static LocalJourneyStore provideLocalJourneyStore(){

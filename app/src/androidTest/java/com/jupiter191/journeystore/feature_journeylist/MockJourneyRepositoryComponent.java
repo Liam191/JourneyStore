@@ -6,8 +6,8 @@ import dagger.Component;
 import java.util.List;
 import dagger.Component;
 
-@Component(modules = MockJourneyRepositoryModule.class)
+@Component(modules = {MockJourneyRepositoryModule.class})
 public interface MockJourneyRepositoryComponent extends JourneyRepositoryComponent {
 
-    MockJourneyRepositoryComponent getJourneyRepositoryComponent();
+    MockJourneyRepositoryComponent mockJourneyRepositoryComponent();
 }

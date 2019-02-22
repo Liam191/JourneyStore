@@ -7,20 +7,13 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-class MockJourneyRepositoryModule {
-
-    private static class MockLocalJourneyStore implements LocalJourneyStore{
-
-    }
+public class MockJourneyRepositoryModule {
 
     @Provides
-    static LocalJourneyStore provideLocalJourneyStore() {
-        return new MockLocalJourneyStore();
-    }
+    static JourneyRepository provideJourneyRepository() {
+        return new JourneyRepository(new LocalJourneyStore(){}){
 
-    @Provides
-    static JourneyRepository provideJourneyRepository(MockLocalJourneyStore localJourneyStore) {
-        return new JourneyRepository(localJourneyStore);
+        };
     }
 }
 

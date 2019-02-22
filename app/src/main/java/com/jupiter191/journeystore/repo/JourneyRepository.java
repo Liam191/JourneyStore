@@ -2,6 +2,7 @@ package com.jupiter191.journeystore.repo;
 
 import com.jupiter191.journeystore.repo.localStore.LocalJourneyStore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,7 +27,9 @@ public class JourneyRepository{
     }
 
     public List<Journey> getJourneys(){
-        return null;
+        ArrayList<Journey> journeyList = new ArrayList<>();
+        journeyList.add(new Journey());
+        return journeyList;
     }
 
     public Journey updateJourney(String id){

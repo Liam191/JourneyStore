@@ -1,9 +1,12 @@
 package com.jupiter191.journeystore.feature_journeylist;
 
 import com.jupiter191.journeystore.R;
+import com.jupiter191.journeystore.feature_journeylist.MockJourneyRepositoryComponent;
 import com.jupiter191.journeystore.repo.DaggerJourneyRepositoryComponent;
 import com.jupiter191.journeystore.repo.Journey;
 import com.jupiter191.journeystore.repo.JourneyRepository;
+import com.jupiter191.journeystore.repo.JourneyRepositoryModule;
+import com.jupiter191.journeystore.repo.localStore.LocalJourneyStore;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -47,9 +50,11 @@ public class JourneyList_AddJourneyTest {
     private final String departureLocationToBeTyped = "123 Mock St, Departureville, Dublin, Ireland";
     private final String destinationToBeTyped = "456 Mock Road, Destination Town, Dublin, Ireland";
 
-    @Inject
     JourneyRepository journeyRepository = DaggerJourneyRepositoryComponent
-            .builder();
+            .builder()
+            .journeyRepositoryModule(new JourneyRepositoryModule())
+            .build()
+            .journeyRepository();
 
     @Rule
     public ActivityTestRule<JourneyListActivity> journeyListActivity;
