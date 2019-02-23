@@ -11,14 +11,12 @@ import dagger.Provides;
 public class JourneyRepositoryModule {
 
     @Provides
-    @Singleton
     static LocalJourneyStore provideLocalJourneyStore(){
         return new LocalJourneyStoreRoomDBImpl();
     }
 
     @Provides
-    @Singleton
     static JourneyRepository provideJourneyRepository(LocalJourneyStore localJourneyStore){
-        return new JourneyRepository(localJourneyStore);
+        return new JourneyRepositoryImpl(localJourneyStore);
     }
 }

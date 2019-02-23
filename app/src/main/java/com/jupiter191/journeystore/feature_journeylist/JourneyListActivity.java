@@ -4,11 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.jupiter191.journeystore.R;
-import com.jupiter191.journeystore.repo.DaggerJourneyRepositoryComponent;
 import com.jupiter191.journeystore.repo.JourneyRepository;
-import com.jupiter191.journeystore.repo.JourneyRepositoryModule;
-
-import javax.inject.Inject;
 
 public class JourneyListActivity extends AppCompatActivity {
 
