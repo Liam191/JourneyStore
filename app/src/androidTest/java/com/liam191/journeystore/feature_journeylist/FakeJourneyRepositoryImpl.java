@@ -12,6 +12,19 @@ class FakeJourneyRepositoryImpl implements JourneyRepository {
 
     private static final String TAG = FakeJourneyRepositoryImpl.class.getSimpleName();
 
+    private ArrayList<Journey> journeyList = new ArrayList<>();
+
+    {
+        journeyList.add(new Journey(1));
+        journeyList.add(new Journey(2));
+        journeyList.add(new Journey(3));
+        journeyList.add(new Journey(4));
+        journeyList.add(new Journey(5));
+        journeyList.add(new Journey(6));
+        journeyList.add(new Journey(7));
+        journeyList.add(new Journey(8));
+    }
+
     @Override
     public void addJourney(Journey journeyToAdd) {
         Log.e(TAG, "IN MOCK JOURNEY REPO IMPL - addJourney: "+ journeyToAdd.toString());
@@ -20,8 +33,7 @@ class FakeJourneyRepositoryImpl implements JourneyRepository {
     @Override
     public List<Journey> getJourneys() {
         Log.e(TAG, "IN MOCK JOURNEY REPO IMPL - getJourneys");
-        ArrayList<Journey> journeyList = new ArrayList<>();
-        journeyList.add(new Journey(1));
+
         return journeyList;
     }
 }
