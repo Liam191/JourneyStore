@@ -1,6 +1,7 @@
 package com.liam191.journeystore.feature_journeylist;
 
 import com.liam191.journeystore.R;
+import com.liam191.journeystore.repo.DaggerJourneyRepositoryComponent;
 import com.liam191.journeystore.repo.Journey;
 import com.liam191.journeystore.repo.JourneyRepository;
 
@@ -8,6 +9,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.List;
 
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
@@ -38,10 +41,20 @@ public class E2E_AddJourneyTest {
 
     @Before
     public void setup(){
-        journeyRepository = DaggerFakeJourneyRepositoryComponent
+        // Using real repository with real underlying database for E2E tests.
+        journeyRepository = DaggerJourneyRepositoryComponent
                 .builder()
                 .build()
                 .getJourneyRepository();
+
+        clearJourneyLocalDatabase();
+    }
+
+    private void clearJourneyLocalDatabase() {
+        List<Journey> journeyList = journeyRepository.getJourneys();
+        for(Journey journey : journeyList){
+            journeyRepository.delete(journey.id());
+        }
     }
 
     @Test
@@ -52,7 +65,7 @@ public class E2E_AddJourneyTest {
 //        onView(withId(ADD_JOURNEY_DESTINATION_TEXT_FIELD_ID)).perform((typeText(destinationToBeTyped)));
 //
 //        onView(withId(ADD_JOURNEY_SUBMIT_BUTTON_ID)).perform(click());
-        assertThat(journeyRepository.getJourneys(), hasItem(new Journey(1)));
+        assertThat(journeyRepository.getJourneys(), hasItem(new Journey(11)));
 
     }
 }
