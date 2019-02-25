@@ -1,9 +1,7 @@
-package com.jupiter191.journeystore.feature_journeylist;
+package com.liam191.journeystore.feature_journeylist;
 
-import com.jupiter191.journeystore.repo.JourneyRepository;
-import com.jupiter191.journeystore.repo.JourneyRepositoryModule;
-
-import javax.inject.Singleton;
+import com.liam191.journeystore.repo.JourneyRepository;
+import com.liam191.journeystore.repo.JourneyRepositoryModule;
 
 import dagger.Module;
 import dagger.Provides;

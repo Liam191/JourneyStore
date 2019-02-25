@@ -1,9 +1,9 @@
-package com.jupiter191.journeystore.feature_journeylist;
+package com.liam191.journeystore.feature_journeylist;
 
 import android.util.Log;
 
-import com.jupiter191.journeystore.repo.Journey;
-import com.jupiter191.journeystore.repo.JourneyRepository;
+import com.liam191.journeystore.repo.Journey;
+import com.liam191.journeystore.repo.JourneyRepository;
 
 import java.util.ArrayList;
 import java.util.List;

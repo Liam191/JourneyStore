@@ -1,7 +1,7 @@
-package com.jupiter191.journeystore.feature_journeylist;
+package com.liam191.journeystore.feature_journeylist;
 
-import com.jupiter191.journeystore.repo.JourneyRepository;
-import com.jupiter191.journeystore.repo.JourneyRepositoryComponent;
+import com.liam191.journeystore.repo.JourneyRepository;
+import com.liam191.journeystore.repo.JourneyRepositoryComponent;
 
 import javax.inject.Singleton;
 

@@ -1,8 +1,6 @@
-package com.jupiter191.journeystore.repo;
+package com.liam191.journeystore.repo;
 
-import com.jupiter191.journeystore.repo.localStore.LocalJourneyStore;
-
-import javax.inject.Singleton;
+import com.liam191.journeystore.repo.localStore.LocalJourneyStore;
 
 import dagger.Module;
 import dagger.Provides;

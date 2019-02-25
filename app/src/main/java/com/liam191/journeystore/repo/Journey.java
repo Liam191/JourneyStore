@@ -1,4 +1,4 @@
-package com.jupiter191.journeystore.repo;
+package com.liam191.journeystore.repo;
 
 import java.util.Objects;
 

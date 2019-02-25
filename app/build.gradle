@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.jupiter191.journeystore"
+        applicationId "com.liam191.journeystore"
         minSdkVersion 22
         targetSdkVersion 28
         versionCode 1
@@ -29,20 +29,6 @@ android {
     }
 }
 
-//android.applicationVariants.all { variant ->
-////    if (variant.buildType.name == "debug") {
-//        def aptOutputDir = new File(buildDir, "generated/source/apt/${variant.unitTestVariant.dirName}")
-//        variant.unitTestVariant.addJavaSourceFoldersToModel(aptOutputDir)
-//        assembleDebug.finalizedBy('assembleDebugUnitTest')
-////    }
-//}
-
-// Add these 3 lines
-//android.libraryVariants.all {
-//    def aptOutputDir = new File(buildDir, "generated/source/apt/${it.unitTestVariant.dirName}")
-//    it.unitTestVariant.addJavaSourceFoldersToModel(aptOutputDir)
-//}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
@@ -55,7 +41,8 @@ dependencies {
     implementation 'com.google.dagger:dagger-android:2.15'
     implementation 'com.google.dagger:dagger-android-support:2.15'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
-    androidTestAnnotationProcessor 'com.google.dagger:dagger-compiler:2.15' // Required for Dagger to build test @Components!
+    androidTestAnnotationProcessor 'com.google.dagger:dagger-compiler:2.15'
+    // Required for Dagger to build test @Components!
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.16'
 
     // Espresso
@@ -66,4 +53,5 @@ dependencies {
 
     // Robolectric
     testImplementation 'org.robolectric:robolectric:4.2'
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
 }

@@ -1,4 +1,4 @@
-package com.jupiter191.journeystore;
+package com.liam191.journeystore;
 
 import org.junit.Test;
 

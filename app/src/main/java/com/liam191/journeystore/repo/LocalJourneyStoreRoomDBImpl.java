@@ -1,6 +1,6 @@
-package com.jupiter191.journeystore.repo;
+package com.liam191.journeystore.repo;
 
-import com.jupiter191.journeystore.repo.localStore.LocalJourneyStore;
+import com.liam191.journeystore.repo.localStore.LocalJourneyStore;
 
 class LocalJourneyStoreRoomDBImpl implements LocalJourneyStore {
 
