@@ -25,7 +25,7 @@
         android:clickable="true"
         android:focusable="true"
         android:onClick="startAddJourneyActivity"
-        app:elevation="16dp"
+        app:elevation="4dp"
         app:borderWidth="0dp"
         app:layout_anchor="@+id/journey_list"
         app:layout_anchorGravity="right|bottom"

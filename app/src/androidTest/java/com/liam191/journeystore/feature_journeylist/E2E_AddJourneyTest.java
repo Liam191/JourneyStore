@@ -5,6 +5,7 @@ import com.liam191.journeystore.repo.DaggerJourneyRepositoryComponent;
 import com.liam191.journeystore.repo.Journey;
 import com.liam191.journeystore.repo.JourneyRepository;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -57,6 +58,7 @@ public class E2E_AddJourneyTest {
         }
     }
 
+
     @Test
     public void addNewJourney(){
         onView(withId(ADD_JOURNEY_BUTTON_ID)).perform(click());
@@ -67,5 +69,11 @@ public class E2E_AddJourneyTest {
 //        onView(withId(ADD_JOURNEY_SUBMIT_BUTTON_ID)).perform(click());
         assertThat(journeyRepository.getJourneys(), hasItem(new Journey(11)));
 
+    }
+    
+
+    @After
+    public void teardown(){
+        clearJourneyLocalDatabase();
     }
 }
