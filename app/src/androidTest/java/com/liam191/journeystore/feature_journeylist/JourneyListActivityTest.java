@@ -20,6 +20,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.*;
 @MediumTest
 public class JourneyListActivityTest {
 
+    private static final String PROJECT_PACKAGE_NAME = "com.liam191.journeystore";
+
     @Rule
     public IntentsTestRule<JourneyListActivity> addJourneyActivity = new IntentsTestRule<>(JourneyListActivity.class);
 
@@ -28,6 +30,6 @@ public class JourneyListActivityTest {
         onView(withId(R.id.add_journey_btn))
                 .perform(click());
 
-        intended(toPackage("com.liam191.journeylist"));
+        intended(toPackage(PROJECT_PACKAGE_NAME));
     }
 }
