@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorPrimaryDark"
         android:clickable="true"
+        android:focusable="true"
         android:onClick="startAddJourneyActivity"
         app:elevation="16dp"
         app:borderWidth="0dp"
