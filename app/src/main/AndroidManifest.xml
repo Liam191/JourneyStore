@@ -9,14 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.liam191.journeystore.feature_journeylist.JourneyListActivity">
+        <activity android:name=".feature_journeylist.JourneyListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.liam191.journeystore.feature_addjourney.AddJourneyActivity"></activity>
+        <activity android:name=".feature_addjourney.AddJourneyActivity" />
+        <activity android:name=".feature_journeydetails.JourneyDetailsActivity"></activity>
     </application>
 
 </manifest>

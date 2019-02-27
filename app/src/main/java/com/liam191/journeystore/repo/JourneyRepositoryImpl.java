@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class JourneyRepositoryImpl implements JourneyRepository{
+class JourneyRepositoryImpl implements JourneyRepository{
 
     private static final String TAG = "JourneyRepository";
 

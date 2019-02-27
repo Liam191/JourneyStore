@@ -9,4 +9,6 @@ import dagger.Component;
 public interface JourneyRepositoryComponent {
 
     JourneyRepository getJourneyRepository();
+
+
 }
