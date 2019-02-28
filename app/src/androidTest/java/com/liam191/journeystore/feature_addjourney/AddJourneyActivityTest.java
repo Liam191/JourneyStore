@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
 public class AddJourneyActivityTest {
 
     @Rule
-    ActivityTestRule<AddJourneyActivity> addJourneyActivity = new ActivityTestRule<>(AddJourneyActivity.class);
+    public ActivityTestRule<AddJourneyActivity> addJourneyActivity = new ActivityTestRule<>(AddJourneyActivity.class);
 
     @Before
     public void setup(){
@@ -33,4 +33,23 @@ public class AddJourneyActivityTest {
         onView(withId(R.id.departure_addr_txt))
                 .check(matches(isDisplayed()));
     }
+
+    @Test
+    public void destinationAddress_shouldBeDisplayed(){
+        onView(withId(R.id.destination_addr_txt))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void journeyDuration_shouldBeDisplayed(){
+        onView(withId(R.id.duration_num))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void journeyStartTime_shouldBeDisplayed(){
+        onView(withId(R.id.start_time))
+                .check(matches(isDisplayed()));
+    }
+
 }
