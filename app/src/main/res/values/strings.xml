@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">JourneyStore</string>
     <string name="journeylist_addjourney_btntext">Add Journey</string>
+    <string name="addjourney_from_label">From</string>
+    <string name="addjourney_addr_hints">Type for suggestions</string>
+    <string name="addjourney_to_label">To</string>
+    <string name="addjourney_duration_label">Duration</string>
+    <string name="addjourney_start_time_label">Start Time</string>
 </resources>

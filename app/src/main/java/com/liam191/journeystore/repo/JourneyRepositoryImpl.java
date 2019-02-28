@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import androidx.lifecycle.LiveData;
+
 class JourneyRepositoryImpl implements JourneyRepository{
 
     private static final String TAG = "JourneyRepository";
@@ -23,7 +25,7 @@ class JourneyRepositoryImpl implements JourneyRepository{
     }
 
     @Override
-    public List<Journey> getJourneys(){
+    public LiveData<List<Journey>> getJourneys(){
         return null;
     }
 }
