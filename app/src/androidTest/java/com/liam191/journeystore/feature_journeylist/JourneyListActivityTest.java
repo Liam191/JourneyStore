@@ -49,11 +49,9 @@ public class JourneyListActivityTest {
                 .check(matches(isDisplayed()));
     }
 
-    @Test
-    public void journeyList_shouldContainJourneyCards(){
-        onData(allOf(is(instanceOf(Journey.class))))
-                .check(matches(isDisplayed()));
-    }
-
-
+//    @Test
+//    public void journeyList_shouldContainJourneyCards(){
+//        onData(allOf(is(instanceOf(Journey.class))))
+//                .check(matches(isDisplayed()));
+//    }
 }
