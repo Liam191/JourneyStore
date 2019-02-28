@@ -7,7 +7,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class FakeJourneyRepositoryModule extends JourneyRepositoryModule {
+class FakeJourneyRepositoryModule extends JourneyRepositoryModule {
 
     @Provides
     static JourneyRepository provideJourneyRepository() {
