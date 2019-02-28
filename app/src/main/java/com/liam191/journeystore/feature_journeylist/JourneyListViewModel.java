@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-public class JourneyListViewModel extends ViewModel {
+class JourneyListViewModel extends ViewModel {
 
     @Inject
     JourneyRepository journeyRepository;

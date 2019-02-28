@@ -13,7 +13,7 @@ class JourneyRepositoryImpl implements JourneyRepository{
     private LocalJourneyStore localJourneyStore;
 
     @Inject
-    public JourneyRepositoryImpl(LocalJourneyStore localJourneyStore){
+    JourneyRepositoryImpl(LocalJourneyStore localJourneyStore){
         this.localJourneyStore = localJourneyStore;
     }
 
