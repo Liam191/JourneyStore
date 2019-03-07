@@ -1,11 +1,7 @@
-package com.liam191.journeystore.feature_journeylist;
+package com.liam191.journeystore.repo;
 
 import android.util.Log;
 
-import com.liam191.journeystore.repo.Journey;
-import com.liam191.journeystore.repo.JourneyRepository;
-
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,19 +26,20 @@ class FakeJourneyRepositoryImpl implements JourneyRepository {
         journeyList.add(new Journey(8));
 
         MutableLiveData<List<Journey>> mutableJourneyList = new MutableLiveData<>();
-        mutableJourneyList.setValue(journeyList);
+        mutableJourneyList.postValue(journeyList);
         liveJourneyList = mutableJourneyList;
     }
 
     @Override
     public void addJourney(Journey journeyToAdd) {
-        Log.e(TAG, "IN MOCK JOURNEY REPO IMPL - addJourney: "+ journeyToAdd.toString());
+        MutableLiveData mld = (MutableLiveData)liveJourneyList;
     }
 
     @Override
     public LiveData<List<Journey>> getJourneys() {
-        Log.e(TAG, "IN MOCK JOURNEY REPO IMPL - getJourneys");
-
+        if(liveJourneyList == null){
+            liveJourneyList = new MutableLiveData<>();
+        }
         return liveJourneyList;
     }
 }
