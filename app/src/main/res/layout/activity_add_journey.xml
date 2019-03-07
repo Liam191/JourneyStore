@@ -7,26 +7,6 @@
     android:padding="16dp"
     tools:context=".feature_addjourney.AddJourneyActivity">
 
-    <TextView
-        android:id="@+id/end_time_label"
-        android:layout_width="wrap_content"
-        android:layout_height="27dp"
-        android:layout_marginTop="51dp"
-        android:text="End Time"
-        android:textSize="@dimen/addjourney_label_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/end_time_picker" />
-
-    <TimePicker
-        android:id="@+id/end_time_picker"
-        android:layout_width="0dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="8dp"
-        android:timePickerMode="spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/start_time_label"
-        app:layout_constraintTop_toBottomOf="@+id/start_time_picker" />
 
     <TextView
         android:id="@+id/departure_addr_label"
@@ -40,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/departure_addr_txt"
+        android:id="@+id/addjourney_departure_addr_txt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -54,62 +34,85 @@
         app:layout_constraintStart_toEndOf="@+id/departure_addr_label" />
 
 
-    <TextView
-        android:id="@+id/destination_addr_label"
-        android:layout_width="wrap_content"
-        android:layout_height="27dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/addjourney_to_label"
-        android:textSize="@dimen/addjourney_label_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/departure_addr_label" />
+    <!--<TextView-->
+        <!--android:id="@+id/destination_addr_label"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="27dp"-->
+        <!--android:layout_marginStart="0dp"-->
+        <!--android:layout_marginTop="32dp"-->
+        <!--android:text="@string/addjourney_to_label"-->
+        <!--android:textSize="@dimen/addjourney_label_size"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/departure_addr_label" />-->
 
-    <EditText
-        android:id="@+id/destination_addr_txt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="0dp"
-        android:autofillHints="postalAddress"
-        android:ems="10"
-        android:hint="@string/addjourney_addr_hints"
-        android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/destination_addr_label"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/departure_addr_label" />
+    <!--<EditText-->
+        <!--android:id="@+id/destination_addr_txt"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:layout_marginEnd="0dp"-->
+        <!--android:autofillHints="postalAddress"-->
+        <!--android:ems="10"-->
+        <!--android:hint="@string/addjourney_addr_hints"-->
+        <!--android:inputType="textPersonName"-->
+        <!--app:layout_constraintBaseline_toBaselineOf="@+id/destination_addr_label"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/departure_addr_label" />-->
 
 
-    <TextView
-        android:id="@+id/start_time_label"
-        android:layout_width="wrap_content"
-        android:layout_height="27dp"
-        android:layout_marginTop="51dp"
-        android:text="@string/addjourney_start_time_label"
-        android:textSize="@dimen/addjourney_label_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/start_time_picker" />
+    <!--<TextView-->
+        <!--android:id="@+id/start_time_label"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="27dp"-->
+        <!--android:layout_marginTop="51dp"-->
+        <!--android:text="@string/addjourney_start_time_label"-->
+        <!--android:textSize="@dimen/addjourney_label_size"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/start_time_picker" />-->
 
-    <TimePicker
-        android:id="@+id/start_time_picker"
-        android:layout_width="0dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:timePickerMode="spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/start_time_label"
-        app:layout_constraintTop_toBottomOf="@+id/destination_addr_txt" />
+    <!--<TimePicker-->
+        <!--android:id="@+id/start_time_picker"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="130dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:timePickerMode="spinner"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/start_time_label"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/destination_addr_txt" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/end_time_label"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="27dp"-->
+    <!--android:layout_marginTop="51dp"-->
+    <!--android:text="End Time"-->
+    <!--android:textSize="@dimen/addjourney_label_size"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="@+id/end_time_picker" />-->
+
+    <!--<TimePicker-->
+    <!--android:id="@+id/end_time_picker"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="130dp"-->
+    <!--android:layout_marginStart="8dp"-->
+    <!--android:timePickerMode="spinner"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintHorizontal_bias="0.0"-->
+    <!--app:layout_constraintStart_toEndOf="@+id/start_time_label"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/start_time_picker" />-->
+
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/addjourney_next_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Next"
+        android:text="@string/addjourney_next_btn_txt"
+        android:onClick="openMapRoutePickerActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
