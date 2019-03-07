@@ -3,6 +3,7 @@ package com.liam191.journeystore.feature_journeylist;
 import com.liam191.journeystore.R;
 import com.liam191.journeystore.repo.Journey;
 import com.liam191.journeystore.repo.JourneyRepository;
+import com.liam191.journeystore.repo.DaggerFakeJourneyRepositoryComponent;
 
 import org.junit.Before;
 import org.junit.Rule;

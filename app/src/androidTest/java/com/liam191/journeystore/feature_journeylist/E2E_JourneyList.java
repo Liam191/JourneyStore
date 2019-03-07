@@ -1,10 +1,12 @@
 package com.liam191.journeystore.feature_journeylist;
 
+import android.util.Log;
+
 import com.liam191.journeystore.R;
 import com.liam191.journeystore.feature_journeydetails.JourneyDetailsActivity;
 import com.liam191.journeystore.repo.DaggerJourneyRepositoryComponent;
 import com.liam191.journeystore.repo.Journey;
-import com.liam191.journeystore.repo.JourneyRepository;
+import com.liam191.journeystore.repo.JourneyRepositoryComponent;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,7 +17,6 @@ import org.junit.runner.RunWith;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
-import androidx.test.espresso.intent.matcher.BundleMatchers;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
@@ -35,30 +36,29 @@ public class E2E_JourneyList {
     private final String departureLocationToBeTyped = "123 Mock St, Departureville, Dublin, Ireland";
     private final String destinationToBeTyped = "456 Mock Road, Destination Town, Dublin, Ireland";
 
-    private JourneyRepository journeyRepository;
+    private JourneyRepositoryComponent journeyRepositoryComponent;
 
     @Rule
-    public ActivityTestRule<JourneyListActivity> journeyListActivity = new ActivityTestRule(JourneyListActivity.class);
+    public ActivityTestRule<JourneyListActivity> journeyListActivity = new ActivityTestRule<>(JourneyListActivity.class);
 
     @Rule
-    public ActivityTestRule<JourneyDetailsActivity> journeyDetailsActivity = new ActivityTestRule(JourneyDetailsActivity.class);
+    public ActivityTestRule<JourneyDetailsActivity> journeyDetailsActivity = new ActivityTestRule<>(JourneyDetailsActivity.class);
 
     @Before
     public void setup(){
         // Using real repository with real underlying database for E2E tests.
-        journeyRepository = DaggerJourneyRepositoryComponent
+        journeyRepositoryComponent = DaggerJourneyRepositoryComponent
                 .builder()
-                .build()
-                .getJourneyRepository();
+                .build();
 
         clearJourneyLocalDatabase();
     }
 
     private void clearJourneyLocalDatabase() {
-        LiveData<List<Journey>> journeyList = journeyRepository.getJourneys();
-        for(Journey journey : journeyList.getValue()){
-//            journeyRepository.delete(journey.id());
-        }
+//        LiveData<List<Journey>> journeyList = journeyRepositoryComponent.getJourneyRepository().getJourneys();
+//        for(Journey journey : journeyList.getValue()){
+////            journeyRepositoryComponent.getJourneyRepository().delete(journey.id());
+//        }
     }
 
 
@@ -66,7 +66,6 @@ public class E2E_JourneyList {
     public void addNewJourney(){
         // JourneyListActivity
         onView(withId(R.id.add_journey_btn)).perform(click());
-
         // AddJourneyActivity
 //        onView(withId(R.id.add_journey_departure_txt)).perform(typeText(departureLocationToBeTyped));
 //        onView(withId(R.id.add_journey_destination_txt)).perform((typeText(destinationToBeTyped)));
