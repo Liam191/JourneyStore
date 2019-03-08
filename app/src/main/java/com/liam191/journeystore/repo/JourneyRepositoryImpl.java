@@ -19,6 +19,8 @@ class JourneyRepositoryImpl implements JourneyRepository{
         this.localJourneyStore = localJourneyStore;
     }
 
+    //TODO: Add tests for these methods
+    //TODO: Add proper implementations of these methods
     @Override
     public void addJourney(Journey journeyToAdd) {
         localJourneyStore.addJourney(journeyToAdd);

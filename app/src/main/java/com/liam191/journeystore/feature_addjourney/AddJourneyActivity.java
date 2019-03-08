@@ -22,6 +22,7 @@ public class AddJourneyActivity extends AppCompatActivity {
         addJourneyViewModel = ViewModelProviders.of(this).get(AddJourneyViewModel.class);
     }
 
+    //TODO: Add call to view model's addJourney
     public void openMapRoutePickerActivity(View view){
         Log.i(TAG, view.toString());
     }
