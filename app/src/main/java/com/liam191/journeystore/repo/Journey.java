@@ -2,13 +2,23 @@ package com.liam191.journeystore.repo;
 
 import java.util.Objects;
 
-public class Journey {
+final public class Journey {
 
-    private int i;
+    private final String departureAddress;
 
-    public Journey(int i) {
+    public Journey(String departureAddress) {
+        validateArgs(departureAddress);
+        this.departureAddress = departureAddress;
+    }
 
-        this.i = i;
+    private void validateArgs(String departureAddress) {
+        if(departureAddress == null){
+            throw new IllegalArgumentException("Expected departure address to be a String instance. Got a null reference.");
+        }
+    }
+
+    public String getDepartureAddress(){
+        return departureAddress;
     }
 
     @Override
@@ -16,12 +26,11 @@ public class Journey {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Journey journey = (Journey) o;
-        return i == journey.i;
+        return Objects.equals(getDepartureAddress(), journey.getDepartureAddress());
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(i);
+        return Objects.hash(getDepartureAddress());
     }
 }

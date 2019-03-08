@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.liam191.journeystore.R;
 import com.liam191.journeystore.repo.DaggerFakeJourneyRepositoryComponent;
+import com.liam191.journeystore.repo.Journey;
+import com.liam191.journeystore.repo.JourneyRepository;
 import com.liam191.journeystore.repo.JourneyRepositoryComponent;
 
 import org.junit.Before;
@@ -11,12 +13,14 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.test.espresso.Espresso;
 import androidx.test.filters.MediumTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
 import static androidx.test.espresso.Espresso.*;
 import static androidx.test.espresso.action.ViewActions.*;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.assertion.ViewAssertions.*;
 import static androidx.test.espresso.matcher.ViewMatchers.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -31,13 +35,14 @@ public class AddJourneyActivityTest {
 
     @Rule
     public ActivityTestRule<AddJourneyActivity> addJourneyActivity = new ActivityTestRule<>(AddJourneyActivity.class);
-    private JourneyRepositoryComponent fakeJourneyRepositoryComponent;
+    private JourneyRepository fakeJourneyRepository;
 
     @Before
     public void setup(){
-        fakeJourneyRepositoryComponent = DaggerFakeJourneyRepositoryComponent
+        fakeJourneyRepository = DaggerFakeJourneyRepositoryComponent
                 .builder()
-                .build();
+                .build()
+                .getJourneyRepository();
     }
 
     @Test
@@ -72,14 +77,14 @@ public class AddJourneyActivityTest {
 
     @Test
     public void nextButton_givenNoJourneyDetails_onClick_shouldDisplayErrors(){
+        Journey testJourney = new Journey(departureLocationToBeTyped);
+
         onView(withId(R.id.addjourney_departure_addr_txt))
-                .perform(typeText(departureLocationToBeTyped));
+                .perform(typeText(departureLocationToBeTyped),closeSoftKeyboard());
 
         onView(withId(R.id.addjourney_next_btn))
                 .perform(click());
 
-        Log.e(TAG, fakeJourneyRepositoryComponent.getJourneyRepository().getJourneys().getValue().toString());
-//        assertThat(fakeJourneyRepositoryComponent.getJourneyRepository().getJourneys().getValue(),
-//                hasItem());
+        assertThat(fakeJourneyRepository.getJourneys().getValue(), hasItem(is(testJourney)));
     }
 }

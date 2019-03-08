@@ -12,34 +12,28 @@ class FakeJourneyRepositoryImpl implements JourneyRepository {
 
     private static final String TAG = FakeJourneyRepositoryImpl.class.getSimpleName();
 
-    private ArrayList<Journey> journeyList = new ArrayList<>();
-    private LiveData<List<Journey>> liveJourneyList;
+    private MutableLiveData<List<Journey>> liveJourneyList;
+    private List<Journey> journeyList = new ArrayList<>();
 
     {
-        journeyList.add(new Journey(1));
-        journeyList.add(new Journey(2));
-        journeyList.add(new Journey(3));
-        journeyList.add(new Journey(4));
-        journeyList.add(new Journey(5));
-        journeyList.add(new Journey(6));
-        journeyList.add(new Journey(7));
-        journeyList.add(new Journey(8));
-
-        MutableLiveData<List<Journey>> mutableJourneyList = new MutableLiveData<>();
-        mutableJourneyList.postValue(journeyList);
-        liveJourneyList = mutableJourneyList;
+        liveJourneyList = new MutableLiveData<>();
+        liveJourneyList.postValue(journeyList);
     }
 
     @Override
     public void addJourney(Journey journeyToAdd) {
-        MutableLiveData mld = (MutableLiveData)liveJourneyList;
+        // Possible wrong implementation. May not be able to detect changes to list items. See possible solution below code
+        journeyList.add(journeyToAdd);
+        liveJourneyList.postValue(journeyList);
+
+
+        // Clone original Journey list
+        // add new Journey
+        // post value of new Journey list
     }
 
     @Override
     public LiveData<List<Journey>> getJourneys() {
-        if(liveJourneyList == null){
-            liveJourneyList = new MutableLiveData<>();
-        }
         return liveJourneyList;
     }
 }
