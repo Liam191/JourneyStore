@@ -23,6 +23,7 @@ class FakeJourneyRepositoryImpl implements JourneyRepository {
     @Override
     public void addJourney(Journey journeyToAdd) {
         // Possible wrong implementation. May not be able to detect changes to list items. See possible solution below code
+        Log.i(TAG, "----> In FAKE addJourney. Journey to add: "+ journeyToAdd.toString());
         journeyList.add(journeyToAdd);
         liveJourneyList.postValue(journeyList);
 

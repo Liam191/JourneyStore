@@ -1,12 +1,9 @@
 package com.liam191.journeystore.feature_journeylist;
 
-import android.util.Log;
-
 import com.liam191.journeystore.R;
 import com.liam191.journeystore.feature_journeydetails.JourneyDetailsActivity;
-import com.liam191.journeystore.repo.DaggerJourneyRepositoryComponent;
-import com.liam191.journeystore.repo.Journey;
-import com.liam191.journeystore.repo.JourneyRepositoryComponent;
+import com.liam191.journeystore.repo.DaggerFakeJourneyRepositoryComponent;
+import com.liam191.journeystore.repo.FakeJourneyRepositoryComponent;
 
 import org.junit.After;
 import org.junit.Before;
@@ -14,9 +11,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.List;
-
-import androidx.lifecycle.LiveData;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
@@ -36,7 +30,7 @@ public class E2E_JourneyList {
     private final String departureLocationToBeTyped = "123 Mock St, Departureville, Dublin, Ireland";
     private final String destinationToBeTyped = "456 Mock Road, Destination Town, Dublin, Ireland";
 
-    private JourneyRepositoryComponent journeyRepositoryComponent;
+    private FakeJourneyRepositoryComponent fakeJourneyRepositoryComponent;
 
     @Rule
     public ActivityTestRule<JourneyListActivity> journeyListActivity = new ActivityTestRule<>(JourneyListActivity.class);
@@ -47,7 +41,7 @@ public class E2E_JourneyList {
     @Before
     public void setup(){
         // Using real repository with real underlying database for E2E tests.
-        journeyRepositoryComponent = DaggerJourneyRepositoryComponent
+        fakeJourneyRepositoryComponent = DaggerFakeJourneyRepositoryComponent
                 .builder()
                 .build();
 
@@ -55,9 +49,9 @@ public class E2E_JourneyList {
     }
 
     private void clearJourneyLocalDatabase() {
-//        LiveData<List<Journey>> journeyList = journeyRepositoryComponent.getJourneyRepository().getJourneys();
+//        LiveData<List<Journey>> journeyList = fakeJourneyRepositoryComponent.getJourneyRepository().getJourneys();
 //        for(Journey journey : journeyList.getValue()){
-////            journeyRepositoryComponent.getJourneyRepository().delete(journey.id());
+////            fakeJourneyRepositoryComponent.getJourneyRepository().delete(journey.id());
 //        }
     }
 

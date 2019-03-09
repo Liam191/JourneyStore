@@ -1,9 +1,8 @@
 package com.liam191.journeystore.feature_journeylist;
 
 import com.liam191.journeystore.R;
-import com.liam191.journeystore.repo.Journey;
-import com.liam191.journeystore.repo.JourneyRepository;
 import com.liam191.journeystore.repo.DaggerFakeJourneyRepositoryComponent;
+import com.liam191.journeystore.repo.JourneyRepository;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -17,7 +16,6 @@ import androidx.test.runner.AndroidJUnit4;
 import static androidx.test.espresso.Espresso.*;
 import static androidx.test.espresso.action.ViewActions.*;
 import static androidx.test.espresso.matcher.ViewMatchers.*;
-import static org.hamcrest.CoreMatchers.*;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest

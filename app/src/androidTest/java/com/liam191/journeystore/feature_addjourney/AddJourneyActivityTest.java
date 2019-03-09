@@ -1,19 +1,15 @@
 package com.liam191.journeystore.feature_addjourney;
 
-import android.util.Log;
-
 import com.liam191.journeystore.R;
 import com.liam191.journeystore.repo.DaggerFakeJourneyRepositoryComponent;
 import com.liam191.journeystore.repo.Journey;
 import com.liam191.journeystore.repo.JourneyRepository;
-import com.liam191.journeystore.repo.JourneyRepositoryComponent;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import androidx.test.espresso.Espresso;
 import androidx.test.filters.MediumTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
@@ -80,7 +76,7 @@ public class AddJourneyActivityTest {
         Journey testJourney = new Journey(departureLocationToBeTyped);
 
         onView(withId(R.id.addjourney_departure_addr_txt))
-                .perform(typeText(departureLocationToBeTyped),closeSoftKeyboard());
+                .perform(typeText(departureLocationToBeTyped), closeSoftKeyboard());
 
         onView(withId(R.id.addjourney_next_btn))
                 .perform(click());
