@@ -22,10 +22,10 @@ public class AddJourneyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_journey);
+
         addJourneyViewModel = ViewModelProviders.of(this).get(AddJourneyViewModel.class);
 
         departureTextField = findViewById(R.id.addjourney_departure_addr_txt);
-        Log.i(TAG, "In AddJourneyActivity ---> addJourneyViewModel: "+ addJourneyViewModel.toString());
     }
 
     public void openMapRoutePickerActivity(View view){

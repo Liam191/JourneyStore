@@ -10,15 +10,11 @@ import javax.inject.Inject;
 
 import androidx.lifecycle.LiveData;
 
-class JourneyRepositoryImpl implements JourneyRepository{
+public class JourneyRepositoryImpl implements JourneyRepository{
 
     private static final String TAG = JourneyRepositoryImpl.class.getSimpleName();
 
-    private LocalJourneyStore localJourneyStore;
-
-    @Inject
-    JourneyRepositoryImpl(LocalJourneyStore localJourneyStore){
-        this.localJourneyStore = localJourneyStore;
+    JourneyRepositoryImpl(){
     }
 
     //TODO: Add tests for these methods
@@ -26,7 +22,6 @@ class JourneyRepositoryImpl implements JourneyRepository{
     @Override
     public void addJourney(Journey journeyToAdd) {
         Log.i(TAG, "----> In addJourney. Journey to add: "+ journeyToAdd.toString());
-        localJourneyStore.addJourney(journeyToAdd);
     }
 
     @Override
