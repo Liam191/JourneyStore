@@ -1,17 +1,18 @@
 package com.liam191.journeystore.feature_addjourney;
 
-import android.app.Application;
-import com.liam191.journeystore.JourneyStoreViewModel;
 import com.liam191.journeystore.repo.Journey;
+import com.liam191.journeystore.repo.JourneyRepository;
 
-import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 
-public class AddJourneyViewModel extends JourneyStoreViewModel {
+public class AddJourneyViewModel extends ViewModel {
 
     private static final String TAG = AddJourneyViewModel.class.getSimpleName();
 
-    public AddJourneyViewModel(@NonNull Application application) {
-        super(application);
+    private final JourneyRepository journeyRepository;
+
+    public AddJourneyViewModel(JourneyRepository journeyRepository) {
+        this.journeyRepository = journeyRepository;
     }
 
     //TODO: Implement addJourney

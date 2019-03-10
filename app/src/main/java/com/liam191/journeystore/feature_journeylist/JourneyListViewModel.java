@@ -7,8 +7,6 @@ import com.liam191.journeystore.repo.JourneyRepository;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -17,9 +15,7 @@ public class JourneyListViewModel extends ViewModel {
 
     private static final String TAG = JourneyListViewModel.class.getSimpleName();
 
-    @Inject
     public JourneyRepository journeyRepository;
-
     private LiveData<List<Journey>> liveJourneyList;
 
     LiveData<List<Journey>> getJourneys(){

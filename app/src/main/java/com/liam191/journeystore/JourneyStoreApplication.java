@@ -2,20 +2,25 @@ package com.liam191.journeystore;
 
 import android.app.Application;
 
-import com.liam191.journeystore.repo.DaggerJourneyRepositoryComponent;
-import com.liam191.journeystore.repo.JourneyRepositoryComponent;
+import com.liam191.journeystore.repo.JourneyRepository;
+import com.liam191.journeystore.repo.JourneyRepositoryImpl;
+import com.liam191.journeystore.JourneyStoreViewModelFactory;
 
 public class JourneyStoreApplication extends Application {
 
-    private JourneyRepositoryComponent journeyRepositoryComponent;
+    private final JourneyStoreViewModelFactory journeyStoreViewModelFactory;
+
+    {
+        final JourneyRepository journeyRepository = new JourneyRepositoryImpl();
+        journeyStoreViewModelFactory = new JourneyStoreViewModelFactory(journeyRepository);
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        journeyRepositoryComponent = DaggerJourneyRepositoryComponent.builder().build();
     }
 
-    public JourneyRepositoryComponent getJourneyRepositoryComponent(){
-        return journeyRepositoryComponent;
+    public JourneyStoreViewModelFactory getViewModelFactory(){
+        return journeyStoreViewModelFactory;
     }
 }

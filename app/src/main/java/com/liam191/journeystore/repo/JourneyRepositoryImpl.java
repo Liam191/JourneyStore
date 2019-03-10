@@ -14,7 +14,7 @@ public class JourneyRepositoryImpl implements JourneyRepository{
 
     private static final String TAG = JourneyRepositoryImpl.class.getSimpleName();
 
-    JourneyRepositoryImpl(){
+    public JourneyRepositoryImpl(){
     }
 
     //TODO: Add tests for these methods

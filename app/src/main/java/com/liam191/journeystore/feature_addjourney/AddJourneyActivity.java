@@ -8,14 +8,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.liam191.journeystore.JourneyStoreApplication;
 import com.liam191.journeystore.R;
 import com.liam191.journeystore.repo.Journey;
 
 public class AddJourneyActivity extends AppCompatActivity {
 
     private static final String TAG = AddJourneyActivity.class.getSimpleName();
-    private AddJourneyViewModel addJourneyViewModel;
 
+    private AddJourneyViewModel addJourneyViewModel;
     private EditText departureTextField;
 
     @Override
@@ -23,7 +24,10 @@ public class AddJourneyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_journey);
 
-        addJourneyViewModel = ViewModelProviders.of(this).get(AddJourneyViewModel.class);
+        JourneyStoreApplication app = (JourneyStoreApplication) getApplication();
+        addJourneyViewModel = ViewModelProviders
+                .of(this, app.getViewModelFactory())
+                .get(AddJourneyViewModel.class);
 
         departureTextField = findViewById(R.id.addjourney_departure_addr_txt);
     }
