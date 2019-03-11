@@ -2,8 +2,8 @@ package com.liam191.journeystore.feature_journeylist;
 
 import com.liam191.journeystore.R;
 import com.liam191.journeystore.feature_journeydetails.JourneyDetailsActivity;
-import com.liam191.journeystore.repo.DaggerFakeJourneyRepositoryComponent;
-import com.liam191.journeystore.repo.FakeJourneyRepositoryComponent;
+//import com.liam191.journeystore.repo.DaggerFakeJourneyRepositoryComponent;
+//import com.liam191.journeystore.repo.FakeJourneyRepositoryComponent;
 
 import org.junit.After;
 import org.junit.Before;
@@ -30,7 +30,7 @@ public class E2E_JourneyList {
     private final String departureLocationToBeTyped = "123 Mock St, Departureville, Dublin, Ireland";
     private final String destinationToBeTyped = "456 Mock Road, Destination Town, Dublin, Ireland";
 
-    private FakeJourneyRepositoryComponent fakeJourneyRepositoryComponent;
+//    private FakeJourneyRepositoryComponent fakeJourneyRepositoryComponent;
 
     @Rule
     public ActivityTestRule<JourneyListActivity> journeyListActivity = new ActivityTestRule<>(JourneyListActivity.class);
@@ -41,11 +41,11 @@ public class E2E_JourneyList {
     @Before
     public void setup(){
         // Using real repository with real underlying database for E2E tests.
-        fakeJourneyRepositoryComponent = DaggerFakeJourneyRepositoryComponent
-                .builder()
-                .build();
-
-        clearJourneyLocalDatabase();
+//        fakeJourneyRepositoryComponent = DaggerFakeJourneyRepositoryComponent
+//                .builder()
+//                .build();
+//
+//        clearJourneyLocalDatabase();
     }
 
     private void clearJourneyLocalDatabase() {

@@ -1,7 +1,7 @@
 package com.liam191.journeystore.feature_addjourney;
 
 import com.liam191.journeystore.R;
-import com.liam191.journeystore.repo.DaggerFakeJourneyRepositoryComponent;
+import com.liam191.journeystore.repo.FakeJourneyRepositoryImpl;
 import com.liam191.journeystore.repo.Journey;
 import com.liam191.journeystore.repo.JourneyRepository;
 
@@ -35,10 +35,7 @@ public class AddJourneyActivityTest {
 
     @Before
     public void setup(){
-        fakeJourneyRepository = DaggerFakeJourneyRepositoryComponent
-                .builder()
-                .build()
-                .getJourneyRepository();
+        fakeJourneyRepository = new FakeJourneyRepositoryImpl();
     }
 
     @Test

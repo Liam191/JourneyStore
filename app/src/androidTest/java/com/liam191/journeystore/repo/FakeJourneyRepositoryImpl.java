@@ -8,14 +8,14 @@ import java.util.List;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-class FakeJourneyRepositoryImpl implements JourneyRepository {
+public class FakeJourneyRepositoryImpl implements JourneyRepository {
 
     private static final String TAG = FakeJourneyRepositoryImpl.class.getSimpleName();
 
     private MutableLiveData<List<Journey>> liveJourneyList;
     private List<Journey> journeyList = new ArrayList<>();
 
-    {
+    public FakeJourneyRepositoryImpl(){
         liveJourneyList = new MutableLiveData<>();
         liveJourneyList.postValue(journeyList);
     }

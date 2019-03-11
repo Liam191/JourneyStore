@@ -10,7 +10,7 @@ android {
         versionName "1.0"
 
         // Espresso
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.liam191.journeystore.CustomTestRunner"
     }
     compileOptions {
         sourceCompatibility = '1.8'

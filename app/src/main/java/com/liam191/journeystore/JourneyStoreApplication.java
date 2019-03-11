@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.liam191.journeystore.repo.JourneyRepository;
 import com.liam191.journeystore.repo.JourneyRepositoryImpl;
-import com.liam191.journeystore.JourneyStoreViewModelFactory;
 
 public class JourneyStoreApplication extends Application {
 

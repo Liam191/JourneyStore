@@ -1,7 +1,6 @@
 package com.liam191.journeystore.feature_journeylist;
 
 import com.liam191.journeystore.R;
-import com.liam191.journeystore.repo.DaggerFakeJourneyRepositoryComponent;
 import com.liam191.journeystore.repo.JourneyRepository;
 
 import org.junit.Before;
@@ -37,10 +36,6 @@ public class E2E_AddJourneyTest {
 
     @Before
     public void setup(){
-        journeyRepository = DaggerFakeJourneyRepositoryComponent
-                .builder()
-                .build()
-                .getJourneyRepository();
     }
 
     @Test
