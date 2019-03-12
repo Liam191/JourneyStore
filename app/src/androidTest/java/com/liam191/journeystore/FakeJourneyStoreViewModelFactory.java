@@ -1,5 +1,7 @@
 package com.liam191.journeystore;
 
+import android.util.Log;
+
 import com.liam191.journeystore.feature_addjourney.AddJourneyViewModel;
 import com.liam191.journeystore.feature_addjourney.AddJourneyViewModelImpl;
 import com.liam191.journeystore.feature_addjourney.FakeAddJourneyViewModelImpl;
@@ -11,10 +13,12 @@ import androidx.lifecycle.ViewModel;
 class FakeJourneyStoreViewModelFactory extends JourneyStoreViewModelFactory {
 
     private final JourneyRepository journeyRepository;
+    private static final String TAG = FakeJourneyStoreViewModelFactory.class.getSimpleName();
 
     FakeJourneyStoreViewModelFactory(JourneyRepository journeyRepository){
         super(journeyRepository);
         this.journeyRepository = journeyRepository;
+        Log.i(TAG, "In FAKE ViewModelFactory");
     }
 
     @NonNull

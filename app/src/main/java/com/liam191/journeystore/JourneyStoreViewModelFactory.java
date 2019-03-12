@@ -12,7 +12,7 @@ public class JourneyStoreViewModelFactory implements ViewModelProvider.Factory {
 
     private final JourneyRepository journeyRepository;
 
-    JourneyStoreViewModelFactory(JourneyRepository journeyRepository){
+    public JourneyStoreViewModelFactory(JourneyRepository journeyRepository){
         this.journeyRepository = journeyRepository;
     }
 

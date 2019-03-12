@@ -31,6 +31,7 @@ public class AddJourneyActivityTest {
 
     @Rule
     public ActivityTestRule<AddJourneyActivity> addJourneyActivity = new ActivityTestRule<>(AddJourneyActivity.class);
+
     private JourneyRepository fakeJourneyRepository;
 
     @Before

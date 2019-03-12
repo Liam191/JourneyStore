@@ -1,7 +1,13 @@
 package com.liam191.journeystore.feature_journeylist;
 
+import com.liam191.journeystore.CustomTestRunner;
+import com.liam191.journeystore.FakeJourneyStoreApplication;
+import com.liam191.journeystore.JourneyStoreViewModelFactory;
 import com.liam191.journeystore.R;
 import com.liam191.journeystore.feature_journeydetails.JourneyDetailsActivity;
+import com.liam191.journeystore.repo.FakeJourneyRepositoryImpl;
+import com.liam191.journeystore.repo.JourneyRepository;
+import com.liam191.journeystore.repo.JourneyRepositoryImpl;
 //import com.liam191.journeystore.repo.DaggerFakeJourneyRepositoryComponent;
 //import com.liam191.journeystore.repo.FakeJourneyRepositoryComponent;
 
@@ -12,6 +18,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import androidx.test.filters.LargeTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
@@ -30,7 +37,8 @@ public class E2E_JourneyList {
     private final String departureLocationToBeTyped = "123 Mock St, Departureville, Dublin, Ireland";
     private final String destinationToBeTyped = "456 Mock Road, Destination Town, Dublin, Ireland";
 
-//    private FakeJourneyRepositoryComponent fakeJourneyRepositoryComponent;
+    private JourneyRepository  realJourneyRepository = new JourneyRepositoryImpl();
+    private JourneyStoreViewModelFactory realJourneyStoreViewModelFactory = new JourneyStoreViewModelFactory(realJourneyRepository);;
 
     @Rule
     public ActivityTestRule<JourneyListActivity> journeyListActivity = new ActivityTestRule<>(JourneyListActivity.class);
@@ -40,12 +48,8 @@ public class E2E_JourneyList {
 
     @Before
     public void setup(){
-        // Using real repository with real underlying database for E2E tests.
-//        fakeJourneyRepositoryComponent = DaggerFakeJourneyRepositoryComponent
-//                .builder()
-//                .build();
-//
-//        clearJourneyLocalDatabase();
+        ((FakeJourneyStoreApplication) journeyListActivity.getActivity().getApplication())
+                .setViewModelFactory(realJourneyStoreViewModelFactory);
     }
 
     private void clearJourneyLocalDatabase() {
