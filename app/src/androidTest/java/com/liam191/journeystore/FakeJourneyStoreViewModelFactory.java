@@ -10,12 +10,12 @@ import com.liam191.journeystore.repo.JourneyRepository;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 
-class FakeJourneyStoreViewModelFactory extends JourneyStoreViewModelFactory {
+public class FakeJourneyStoreViewModelFactory extends JourneyStoreViewModelFactory {
 
     private final JourneyRepository journeyRepository;
     private static final String TAG = FakeJourneyStoreViewModelFactory.class.getSimpleName();
 
-    FakeJourneyStoreViewModelFactory(JourneyRepository journeyRepository){
+    public FakeJourneyStoreViewModelFactory(JourneyRepository journeyRepository){
         super(journeyRepository);
         this.journeyRepository = journeyRepository;
         Log.i(TAG, "In FAKE ViewModelFactory");
@@ -25,7 +25,7 @@ class FakeJourneyStoreViewModelFactory extends JourneyStoreViewModelFactory {
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if(modelClass == AddJourneyViewModel.class){
-            return (T) new FakeAddJourneyViewModelImpl(journeyRepository);
+            return (T) new AddJourneyViewModelImpl(journeyRepository);
         }
         throw new IllegalArgumentException(String.format("Requested class %s did not match expected class %s.", modelClass, AddJourneyViewModelImpl.class));
     }

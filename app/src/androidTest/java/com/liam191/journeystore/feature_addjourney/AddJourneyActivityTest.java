@@ -1,5 +1,9 @@
 package com.liam191.journeystore.feature_addjourney;
 
+import android.util.Log;
+
+import com.liam191.journeystore.FakeJourneyStoreApplication;
+import com.liam191.journeystore.FakeJourneyStoreViewModelFactory;
 import com.liam191.journeystore.R;
 import com.liam191.journeystore.repo.FakeJourneyRepositoryImpl;
 import com.liam191.journeystore.repo.Journey;
@@ -27,7 +31,7 @@ public class AddJourneyActivityTest {
 
     private static final String TAG = AddJourneyActivityTest.class.getSimpleName();
     private final String departureLocationToBeTyped = "123 Mock St, Departureville, Dublin, Ireland";
-    private final String destinationToBeTyped = "456 Mock Road, Destination Town, Dublin, Ireland";
+//    private final String destinationToBeTyped = "456 Mock Road, Destination Town, Dublin, Ireland";
 
     @Rule
     public ActivityTestRule<AddJourneyActivity> addJourneyActivity = new ActivityTestRule<>(AddJourneyActivity.class);
@@ -37,6 +41,9 @@ public class AddJourneyActivityTest {
     @Before
     public void setup(){
         fakeJourneyRepository = new FakeJourneyRepositoryImpl();
+        FakeJourneyStoreViewModelFactory fakeViewModelFactory = new FakeJourneyStoreViewModelFactory(fakeJourneyRepository);
+        ((FakeJourneyStoreApplication) addJourneyActivity.getActivity().getApplication()).setViewModelFactory(fakeViewModelFactory);
+        Log.i(TAG, "Fake Application's getViewModelFactory() == "+ ((FakeJourneyStoreApplication) addJourneyActivity.getActivity().getApplication()).getViewModelFactory());
     }
 
     @Test
