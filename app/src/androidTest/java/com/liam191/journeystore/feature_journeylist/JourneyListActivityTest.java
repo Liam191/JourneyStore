@@ -1,8 +1,12 @@
 package com.liam191.journeystore.feature_journeylist;
 
+import com.liam191.journeystore.FakeJourneyStoreApplication;
 import com.liam191.journeystore.R;
+import com.liam191.journeystore.repo.FakeJourneyRepositoryImpl;
 import com.liam191.journeystore.repo.Journey;
+import com.liam191.journeystore.repo.JourneyRepository;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,8 +31,17 @@ public class JourneyListActivityTest {
     private static final String PROJECT_PACKAGE_NAME = "com.liam191.journeystore";
     private static final int JOURNEY_LIST = R.id.journey_list;
 
+    private JourneyRepository fakeJourneyRepository;
+
     @Rule
-    public IntentsTestRule<JourneyListActivity> addJourneyActivity = new IntentsTestRule<>(JourneyListActivity.class);
+    public IntentsTestRule<JourneyListActivity> journeyListActivity = new IntentsTestRule<>(JourneyListActivity.class);
+
+    @Before
+    public void setup(){
+        fakeJourneyRepository = new FakeJourneyRepositoryImpl();
+        ((FakeJourneyStoreApplication) journeyListActivity.getActivity().getApplication())
+                .createViewModelFactoryWithRepository(fakeJourneyRepository);
+    }
 
     @Test
     public void addJourneyButton_whenClicked_shouldOpenAddJourneyActivity(){

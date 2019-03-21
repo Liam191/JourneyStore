@@ -11,7 +11,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 @SuppressWarnings("WeakerAccess") // Necessary for use with ViewModelProviders access from JourneyListActivity
-class JourneyListViewModel extends ViewModel {
+public class JourneyListViewModel extends ViewModel {
 
     private static final String TAG = JourneyListViewModel.class.getSimpleName();
 
@@ -19,8 +19,6 @@ class JourneyListViewModel extends ViewModel {
     private LiveData<List<Journey>> liveJourneyList;
 
     LiveData<List<Journey>> getJourneys(){
-        Log.i(TAG, "journeyRepository.getJourneys(): "+ journeyRepository.getJourneys());
-
         if(liveJourneyList == null){
             liveJourneyList = journeyRepository.getJourneys();
         }

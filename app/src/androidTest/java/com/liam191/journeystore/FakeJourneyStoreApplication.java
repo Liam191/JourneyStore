@@ -7,11 +7,13 @@ public class FakeJourneyStoreApplication extends JourneyStoreApplication {
 
     private JourneyStoreViewModelFactory journeyStoreViewModelFactory;
 
+    {
+        createViewModelFactoryWithRepository(new FakeJourneyRepositoryImpl());
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
-        final JourneyRepository fakeJourneyRepository = new FakeJourneyRepositoryImpl();
-        journeyStoreViewModelFactory = new FakeJourneyStoreViewModelFactory(fakeJourneyRepository);
     }
 
     @Override
@@ -19,10 +21,10 @@ public class FakeJourneyStoreApplication extends JourneyStoreApplication {
         return journeyStoreViewModelFactory;
     }
 
-    // To be used in E2E tests to use the real ViewModel factory and repository
-    // This method was added to preserve the *private* *final* JourneyStoreViewModelFactory
-    // reference in the JourneyStoreApplication class.
-    public void setViewModelFactory(JourneyStoreViewModelFactory journeyStoreViewModelFactory){
-        this.journeyStoreViewModelFactory = journeyStoreViewModelFactory;
+    // Creates a new JourneyStoreViewModelFactory with the specified JourneyRepository reference.
+    // This is done to create fresh instances for each test and to use real or fake JourneyRepositories
+    // as needed. Likely slower than just setting the JourneyRepository of the
+    public void createViewModelFactoryWithRepository(JourneyRepository journeyRepository){
+        this.journeyStoreViewModelFactory = new JourneyStoreViewModelFactory(journeyRepository);
     }
 }

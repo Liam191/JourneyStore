@@ -37,9 +37,6 @@ public class E2E_JourneyList {
     private final String departureLocationToBeTyped = "123 Mock St, Departureville, Dublin, Ireland";
     private final String destinationToBeTyped = "456 Mock Road, Destination Town, Dublin, Ireland";
 
-    private JourneyRepository  realJourneyRepository = new JourneyRepositoryImpl();
-    private JourneyStoreViewModelFactory realJourneyStoreViewModelFactory = new JourneyStoreViewModelFactory(realJourneyRepository);;
-
     @Rule
     public ActivityTestRule<JourneyListActivity> journeyListActivity = new ActivityTestRule<>(JourneyListActivity.class);
 
@@ -49,7 +46,7 @@ public class E2E_JourneyList {
     @Before
     public void setup(){
         ((FakeJourneyStoreApplication) journeyListActivity.getActivity().getApplication())
-                .setViewModelFactory(realJourneyStoreViewModelFactory);
+                .createViewModelFactoryWithRepository(new JourneyRepositoryImpl());
     }
 
     private void clearJourneyLocalDatabase() {

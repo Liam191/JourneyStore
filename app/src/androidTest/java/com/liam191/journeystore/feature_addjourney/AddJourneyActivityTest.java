@@ -1,13 +1,11 @@
 package com.liam191.journeystore.feature_addjourney;
 
-import android.util.Log;
-
 import com.liam191.journeystore.FakeJourneyStoreApplication;
-import com.liam191.journeystore.FakeJourneyStoreViewModelFactory;
 import com.liam191.journeystore.R;
 import com.liam191.journeystore.repo.FakeJourneyRepositoryImpl;
 import com.liam191.journeystore.repo.Journey;
 import com.liam191.journeystore.repo.JourneyRepository;
+import com.liam191.journeystore.repo.JourneyRepositoryImpl;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -41,9 +39,8 @@ public class AddJourneyActivityTest {
     @Before
     public void setup(){
         fakeJourneyRepository = new FakeJourneyRepositoryImpl();
-        FakeJourneyStoreViewModelFactory fakeViewModelFactory = new FakeJourneyStoreViewModelFactory(fakeJourneyRepository);
-        ((FakeJourneyStoreApplication) addJourneyActivity.getActivity().getApplication()).setViewModelFactory(fakeViewModelFactory);
-        Log.i(TAG, "Fake Application's getViewModelFactory() == "+ ((FakeJourneyStoreApplication) addJourneyActivity.getActivity().getApplication()).getViewModelFactory());
+        ((FakeJourneyStoreApplication) addJourneyActivity.getActivity().getApplication())
+                .createViewModelFactoryWithRepository(fakeJourneyRepository);
     }
 
     @Test

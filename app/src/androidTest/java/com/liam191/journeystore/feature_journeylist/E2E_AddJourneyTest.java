@@ -1,7 +1,9 @@
 package com.liam191.journeystore.feature_journeylist;
 
+import com.liam191.journeystore.FakeJourneyStoreApplication;
 import com.liam191.journeystore.R;
 import com.liam191.journeystore.repo.JourneyRepository;
+import com.liam191.journeystore.repo.JourneyRepositoryImpl;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -36,6 +38,9 @@ public class E2E_AddJourneyTest {
 
     @Before
     public void setup(){
+        // Use real JourneyRepository in E2E tests.
+        ((FakeJourneyStoreApplication) journeyListActivity.getActivity().getApplication())
+                .createViewModelFactoryWithRepository(new JourneyRepositoryImpl());
     }
 
     @Test

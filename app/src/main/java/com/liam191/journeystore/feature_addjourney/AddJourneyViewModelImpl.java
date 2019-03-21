@@ -17,7 +17,6 @@ public class AddJourneyViewModelImpl extends AddJourneyViewModel {
     //TODO: Implement addJourney
     //TODO: Connect addJourney to AddJourneyActivity
     public void addJourney(Journey journeyToAdd){
-        Log.i(TAG, "In real AddJourneyViewModel");
         journeyRepository.addJourney(journeyToAdd);
     }
 }
