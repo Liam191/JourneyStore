@@ -43,10 +43,12 @@ public class E2E_JourneyList {
     @Rule
     public ActivityTestRule<JourneyDetailsActivity> journeyDetailsActivity = new ActivityTestRule<>(JourneyDetailsActivity.class);
 
+    JourneyRepository fakeJourneyRepository;
+
     @Before
     public void setup(){
-        ((FakeJourneyStoreApplication) journeyListActivity.getActivity().getApplication())
-                .createViewModelFactoryWithRepository(new JourneyRepositoryImpl());
+        fakeJourneyRepository = new FakeJourneyRepositoryImpl();
+        FakeJourneyStoreApplication.createViewModelFactoryForApplication(journeyListActivity, fakeJourneyRepository);
     }
 
     private void clearJourneyLocalDatabase() {

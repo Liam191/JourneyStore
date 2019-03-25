@@ -27,7 +27,8 @@ public class FakeJourneyStoreApplication extends JourneyStoreApplication {
 
     // Creates a new JourneyStoreViewModelFactory with the specified JourneyRepository reference.
     // This is done to create fresh instances for each test and to use real or fake JourneyRepositories
-    // as needed. Likely slower than just setting the JourneyRepository of the
+    // as needed. Likely slower than just setting the JourneyRepository of the ViewModel factory, but
+    // easier than creating and managing a fake with its own overridden methods and fake repository.
     private void createViewModelFactoryWithRepository(JourneyRepository journeyRepository){
         this.journeyStoreViewModelFactory = new JourneyStoreViewModelFactory(journeyRepository);
     }
