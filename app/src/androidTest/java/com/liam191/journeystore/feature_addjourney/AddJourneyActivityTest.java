@@ -47,8 +47,7 @@ public class AddJourneyActivityTest {
     @Before
     public void setup(){
         fakeJourneyRepository = new FakeJourneyRepositoryImpl();
-        ((FakeJourneyStoreApplication) addJourneyActivity.getActivity().getApplication())
-                .createViewModelFactoryWithRepository(fakeJourneyRepository);
+        FakeJourneyStoreApplication.createViewModelFactoryForApplication(addJourneyActivity, fakeJourneyRepository);
     }
 
     // Assert UI elements are displayed.
@@ -101,6 +100,7 @@ public class AddJourneyActivityTest {
     }
 
 
+    // UI Tests
     @Test
     public void nextButton_givenNoJourneyDetails_onClick_shouldDisplayErrors(){
         Journey testJourney = new Journey(departureLocationToBeTyped);
