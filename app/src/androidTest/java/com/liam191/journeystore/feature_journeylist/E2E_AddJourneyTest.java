@@ -24,9 +24,16 @@ public class E2E_AddJourneyTest {
 
 
     private static final int ADD_JOURNEY_BUTTON_ID = R.id.add_journey_btn;
-//    private static final int ADD_JOURNEY_DEPARTURE_TEXT_FIELD_ID = R.id.add_journey_departure_txt;
-//    private static final int ADD_JOURNEY_DESTINATION_TEXT_FIELD_ID = R.id.add_journey_destination_txt;
-//    private static final int ADD_JOURNEY_SUBMIT_BUTTON_ID = R.id.add_journey_submit_btn;
+
+    private static final int ADD_JOURNEY_DEPARTURE_TEXT_FIELD_ID = R.id.add_journey_departure_txt;
+    private static final int ADD_JOURNEY_DESTINATION_TEXT_FIELD_ID = R.id.add_journey_destination_txt;
+    private static final int ADD_JOURNEY_START_TIME_FIELD_ID = R.id.add_journey_start_time;
+    private static final int ADD_JOURNEY_TRIP_DURATION_FIELD_ID = R.id.add_journey_trip_duration;
+    private static final int ADD_JOURNEY_PASSENGER_COUNT_FIELD_ID = R.id.add_journey_passenger_count;
+    private static final int ADD_JOURNEY_WEATHER_FIELD_ID = R.id.add_journey_weather;
+    private static final int ADD_JOURNEY_TEMPERATURE_FIELD_ID = R.id.add_journey_temperature;
+
+    private static final int ADD_JOURNEY_SUBMIT_BUTTON_ID = R.id.add_journey_submit_btn;
 
     private final String departureLocationToBeTyped = "123 Mock St, Departureville, Dublin, Ireland";
     private final String destinationToBeTyped = "456 Mock Road, Destination Town, Dublin, Ireland";
