@@ -1,7 +1,6 @@
 package com.liam191.journeystore;
 
 import com.liam191.journeystore.feature_addjourney.AddJourneyViewModel;
-import com.liam191.journeystore.feature_addjourney.AddJourneyViewModelImpl;
 import com.liam191.journeystore.repo.JourneyRepository;
 
 import androidx.annotation.NonNull;
@@ -20,7 +19,7 @@ public class JourneyStoreViewModelFactory implements ViewModelProvider.Factory {
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if(modelClass == AddJourneyViewModel.class){
-            return (T) new AddJourneyViewModelImpl(journeyRepository);
+            return (T) new AddJourneyViewModel(journeyRepository);
         }
         throw new IllegalArgumentException(String.format("Requested class %s did not match expected class %s.", modelClass, AddJourneyViewModel.class));
     }

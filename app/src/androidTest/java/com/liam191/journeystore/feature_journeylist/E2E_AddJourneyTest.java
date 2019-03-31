@@ -26,20 +26,20 @@ public class E2E_AddJourneyTest {
 
     private static final int ADD_JOURNEY_BUTTON_ID = R.id.add_journey_btn;
 
-    private static final int DEPARTURE_TEXT_FIELD_ID = R.id.add_journey_departure_txt;
-    private static final int DESTINATION_TEXT_FIELD_ID = R.id.add_journey_destination_txt;
-    private static final int START_TIME_FIELD_ID = R.id.add_journey_start_time;
-    private static final int TRIP_DURATION_FIELD_ID = R.id.add_journey_trip_duration;
-    private static final int PASSENGER_COUNT_FIELD_ID = R.id.add_journey_passenger_count;
-    private static final int WEATHER_FIELD_ID = R.id.add_journey_weather;
-    private static final int TEMPERATURE_FIELD_ID = R.id.add_journey_temperature;
-
-    private static final int SUBMIT_BUTTON_ID = R.id.add_journey_submit_btn;
+//    private static final int DEPARTURE_TEXT_FIELD_ID = R.id.add_journey_departure_txt;
+//    private static final int DESTINATION_TEXT_FIELD_ID = R.id.add_journey_destination_txt;
+//    private static final int START_TIME_FIELD_ID = R.id.add_journey_start_time;
+//    private static final int TRIP_DURATION_FIELD_ID = R.id.add_journey_trip_duration;
+//    private static final int PASSENGER_COUNT_FIELD_ID = R.id.add_journey_passenger_count;
+//    private static final int WEATHER_FIELD_ID = R.id.add_journey_weather;
+//    private static final int TEMPERATURE_FIELD_ID = R.id.add_journey_temperature;
+//
+//    private static final int SUBMIT_BUTTON_ID = R.id.add_journey_submit_btn;
 
     private final String departureLocationToBeTyped = "123 Mock St, Departureville, Dublin, Ireland";
     private final String destinationToBeTyped = "456 Mock Road, Destination Town, Dublin, Ireland";
 
-    private JourneyRepository journeyRepository;
+    private JourneyRepository realJourneyRepository;
 
     @Rule
     public ActivityTestRule<JourneyListActivity> journeyListActivity = new ActivityTestRule<>(JourneyListActivity.class);
@@ -47,7 +47,7 @@ public class E2E_AddJourneyTest {
     @Before
     public void setup(){
         // Use real JourneyRepository in E2E tests.
-        JourneyRepository realJourneyRepository = new JourneyRepositoryImpl();
+        realJourneyRepository = new JourneyRepositoryImpl();
         FakeJourneyStoreApplication.createViewModelFactoryForApplication(journeyListActivity, realJourneyRepository);
 
     }
