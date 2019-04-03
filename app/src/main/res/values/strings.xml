@@ -3,6 +3,7 @@
     <string name="add_journey_btn_text">Add Journey</string>
     <string name="add_journey_from_label">From</string>
     <string name="add_journey_addr_hints">Type for suggestions</string>
+    <string name="add_journey_required_field_error">Required</string>
     <string name="add_journey_to_label">To</string>
     <string name="add_journey_duration_label">Duration</string>
     <string name="add_journey_start_time_label">Start Time</string>
