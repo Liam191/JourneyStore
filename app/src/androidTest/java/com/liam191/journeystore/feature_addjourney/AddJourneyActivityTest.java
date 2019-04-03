@@ -26,16 +26,17 @@ import static org.hamcrest.CoreMatchers.*;
 @MediumTest
 public class AddJourneyActivityTest {
 
-//    private static final int DEPARTURE_TEXT_FIELD_ID = R.id.add_journey_departure_txt;
-//    private static final int DESTINATION_TEXT_FIELD_ID = R.id.add_journey_destination_txt;
+    private static final String TAG = AddJourneyActivityTest.class.getSimpleName();
+
+    private static final int DEPARTURE_ADDRESS_TEXT_FIELD_ID = R.id.add_journey_departure_addr_txt;
+//    private static final int DESTINATION_ADDRESS_TEXT_FIELD_ID = R.id.add_journey_destination_addr_txt;
 //    private static final int START_TIME_FIELD_ID = R.id.add_journey_start_time;
 //    private static final int TRIP_DURATION_FIELD_ID = R.id.add_journey_trip_duration;
 //    private static final int PASSENGER_COUNT_FIELD_ID = R.id.add_journey_passenger_count;
 //    private static final int WEATHER_FIELD_ID = R.id.add_journey_weather;
 //    private static final int TEMPERATURE_FIELD_ID = R.id.add_journey_temperature;
-//    private static final int SUBMIT_BUTTON_ID = R.id.add_journey_submit_btn;
+    private static final int SUBMIT_BUTTON_ID = R.id.add_journey_submit_btn;
 
-    private static final String TAG = AddJourneyActivityTest.class.getSimpleName();
     private final String departureLocationToBeTyped = "123 Mock St, Departureville, Dublin, Ireland";
 //    private final String destinationToBeTyped = "456 Mock Road, Destination Town, Dublin, Ireland";
 
@@ -51,66 +52,67 @@ public class AddJourneyActivityTest {
     }
 
     // Assert UI elements are displayed.
-//    @Test
-//    public void departureAddress_shouldBeDisplayed(){
-//        onView(withId(DEPARTURE_TEXT_FIELD_ID))
-//                .check(matches(isDisplayed()));
-//    }
-//
+    @Test
+    public void departureAddress_shouldBeDisplayed(){
+        onView(withId(DEPARTURE_ADDRESS_TEXT_FIELD_ID))
+                .check(matches(isDisplayed()));
+    }
+
 //    @Test
 //    public void destinationAddress_shouldBeDisplayed(){
-//        onView(withId(DESTINATION_TEXT_FIELD_ID))
+//        onView(withId(DESTINATION_ADDRESS_TEXT_FIELD_ID))
 //                .check(matches(isDisplayed()));
 //    }
-//
+
 //    @Test
 //    public void startTimePicker_shouldBeDisplayed(){
 //        onView(withId(START_TIME_FIELD_ID))
 //                .check(matches(isDisplayed()));
 //    }
-//
+
 //    @Test
 //    public void tripDurationPicker_shouldBeDisplayed(){
 //        onView(withId(TRIP_DURATION_FIELD_ID))
 //                .check(matches(isDisplayed()));
 //    }
-//
+
 //    @Test
 //    public void passengerCount_shouldBeDisplayed(){
 //        onView(withId(PASSENGER_COUNT_FIELD_ID))
 //                .check(matches(isDisplayed()));
 //    }
-//
+
 //    @Test
 //    public void weatherDropdown_shouldBeDisplayed(){
 //        onView(withId(WEATHER_FIELD_ID))
 //                .check(matches(isDisplayed()));
 //    }
-//
+
 //    @Test
 //    public void temperatureField_shouldBeDisplayed(){
 //        onView(withId(TEMPERATURE_FIELD_ID))
 //                .check(matches(isDisplayed()));
 //    }
-//
-//    @Test
-//    public void submitButton_shouldBeDisplayed(){
-//        onView(withId(SUBMIT_BUTTON_ID))
-//                .check(matches(isDisplayed()));
-//    }
+
+    @Test
+    public void submitButton_shouldBeDisplayed(){
+        onView(withId(SUBMIT_BUTTON_ID))
+                .check(matches(isDisplayed()));
+    }
 
 
     // UI Tests
     @Test
     public void nextButton_givenNoJourneyDetails_onClick_shouldDisplayErrors(){
-        Journey testJourney = new Journey(departureLocationToBeTyped);
+        String departureAddressTextErrorMessage = "Departure address is required!";
 
-        onView(withId(R.id.addjourney_departure_addr_txt))
+        onView(withId(DEPARTURE_ADDRESS_TEXT_FIELD_ID))
                 .perform(typeText(departureLocationToBeTyped), closeSoftKeyboard());
 
-        onView(withId(R.id.addjourney_next_btn))
+        onView(withId(SUBMIT_BUTTON_ID))
                 .perform(click());
 
-        assertThat(fakeJourneyRepository.getJourneys().getValue(), hasItem(is(testJourney)));
+        onView(withId(DEPARTURE_ADDRESS_TEXT_FIELD_ID))
+                .check(matches(hasErrorText(departureAddressTextErrorMessage)));
     }
 }

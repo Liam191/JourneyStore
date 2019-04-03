@@ -26,8 +26,8 @@ public class E2E_AddJourneyTest {
 
     private static final int ADD_JOURNEY_BUTTON_ID = R.id.add_journey_btn;
 
-//    private static final int DEPARTURE_TEXT_FIELD_ID = R.id.add_journey_departure_txt;
-//    private static final int DESTINATION_TEXT_FIELD_ID = R.id.add_journey_destination_txt;
+    private static final int DEPARTURE_ADDRESS_TEXT_FIELD_ID = R.id.add_journey_departure_addr_txt;
+//    private static final int DESTINATION_ADDRESS_TEXT_FIELD_ID = R.id.add_journey_destination_addr_txt;
 //    private static final int START_TIME_FIELD_ID = R.id.add_journey_start_time;
 //    private static final int TRIP_DURATION_FIELD_ID = R.id.add_journey_trip_duration;
 //    private static final int PASSENGER_COUNT_FIELD_ID = R.id.add_journey_passenger_count;

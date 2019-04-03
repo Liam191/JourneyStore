@@ -28,10 +28,10 @@ public class AddJourneyActivity extends AppCompatActivity {
                 .of(this, app.getViewModelFactory())
                 .get(AddJourneyViewModel.class);
 
-        departureTextField = findViewById(R.id.addjourney_departure_addr_txt);
+        departureTextField = findViewById(R.id.add_journey_departure_addr_txt);
     }
 
-    public void openMapRoutePickerActivity(View view){
+    public void onSubmit(View view){
         String departureText = departureTextField.getText().toString();
 
         Journey journeyToAdd = new Journey(departureText);
