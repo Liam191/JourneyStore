@@ -103,8 +103,19 @@ public class AddJourneyActivityTest {
 
     // UI Tests
     @Test
-    public void nextButton_givenNoJourneyDetails_onClick_shouldDisplayErrors(){
-        String departureAddressTextErrorMessage = "Departure address is required!";
+    public void submitButton_givenNoJourneyDetails_onClick_shouldDisplayErrors(){
+        String departureAddressTextErrorMessage = addJourneyActivity.getActivity().getResources().getString(R.string.add_journey_required_field_error);
+
+        onView(withId(SUBMIT_BUTTON_ID))
+                .perform(click());
+
+        onView(withId(DEPARTURE_ADDRESS_TEXT_FIELD_ID))
+                .check(matches(hasErrorText(departureAddressTextErrorMessage)));
+    }
+
+    @Test
+    public void submitButton_givenAllJourneyDetails_onClick_shouldAddJourneyToRepository(){
+        Journey journeyToMatch = new Journey(departureLocationToBeTyped);
 
         onView(withId(DEPARTURE_ADDRESS_TEXT_FIELD_ID))
                 .perform(typeText(departureLocationToBeTyped), closeSoftKeyboard());
@@ -112,7 +123,6 @@ public class AddJourneyActivityTest {
         onView(withId(SUBMIT_BUTTON_ID))
                 .perform(click());
 
-        onView(withId(DEPARTURE_ADDRESS_TEXT_FIELD_ID))
-                .check(matches(hasErrorText(departureAddressTextErrorMessage)));
+        assertThat(fakeJourneyRepository.getJourneys().getValue(), hasItem(journeyToMatch));
     }
 }
