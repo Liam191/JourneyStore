@@ -35,7 +35,7 @@ public class AddJourneyActivity extends AppCompatActivity {
     }
 
     private void saveJourneyDataToViewModel(){
-        addJourneyViewModel.setDepartureText(departureTextField.getText().toString());
+//        addJourneyViewModel.setDepartureText(departureTextField.getText().toString());
     }
 
     public void onSubmit(View view) {

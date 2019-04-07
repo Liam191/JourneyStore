@@ -1,5 +1,8 @@
 package com.liam191.journeystore.feature_addjourney;
 
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
+
 import com.liam191.journeystore.FakeJourneyStoreApplication;
 import com.liam191.journeystore.R;
 import com.liam191.journeystore.repo.FakeJourneyRepositoryImpl;
@@ -102,6 +105,17 @@ public class AddJourneyActivityTest {
 
 
     // UI Tests
+    @Test
+    public void addJourneyActivity_givenAllJourneyDetails_onRotation_shouldPersistInputFields(){
+        onView(withId(DEPARTURE_ADDRESS_TEXT_FIELD_ID))
+                .perform(typeText(departureLocationToBeTyped));
+
+        addJourneyActivity.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        onView(withId(DEPARTURE_ADDRESS_TEXT_FIELD_ID))
+                .check(matches(withText(departureLocationToBeTyped)));
+    }
+
     @Test
     public void submitButton_givenNoJourneyDetails_onClick_shouldDisplayErrors(){
         String departureAddressTextErrorMessage = addJourneyActivity.getActivity().getResources().getString(R.string.add_journey_required_field_error);
