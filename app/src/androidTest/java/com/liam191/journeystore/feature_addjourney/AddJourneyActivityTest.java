@@ -10,7 +10,9 @@ import com.liam191.journeystore.repo.FakeJourneyRepositoryImpl;
 import com.liam191.journeystore.repo.Journey;
 import com.liam191.journeystore.repo.JourneyRepository;
 
+import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,10 +51,20 @@ public class AddJourneyActivityTest {
 
     private JourneyRepository fakeJourneyRepository;
 
+    @BeforeClass
+    public static void classSetup(){
+        resetJourneyRepository();
+    }
+
     @Before
     public void setup(){
-        fakeJourneyRepository = new FakeJourneyRepositoryImpl();
-        FakeJourneyStoreApplication.createViewModelFactoryForApplication(addJourneyActivity, fakeJourneyRepository);
+        fakeJourneyRepository = FakeJourneyStoreApplication.getFactoryJourneyRepository();
+        Log.i(TAG, "testingJourneyStore... AddJourneyActivityTest journeyRepo: "+ fakeJourneyRepository.toString());
+    }
+
+    @After
+    public void teardown(){
+        resetJourneyRepository();
     }
 
     // Assert UI elements are displayed.
@@ -138,6 +150,13 @@ public class AddJourneyActivityTest {
         onView(withId(SUBMIT_BUTTON_ID))
                 .perform(click());
 
+        Log.i(TAG, "testingJourneyStore... fakeJourneyRep instance: "+ fakeJourneyRepository.toString());
+//        Log.i(TAG, "testingJourneyStore... fakeJourneyRep journeyList: "+ fakeJourneyRepository.getJourneys().getValue());
         assertThat(fakeJourneyRepository.getJourneys().getValue(), hasItem(journeyToMatch));
+    }
+
+
+    private static void resetJourneyRepository() {
+        FakeJourneyStoreApplication.resetFactoryJourneyRepository();
     }
 }

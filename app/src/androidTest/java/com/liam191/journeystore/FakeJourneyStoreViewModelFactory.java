@@ -3,18 +3,19 @@ package com.liam191.journeystore;
 import android.util.Log;
 
 import com.liam191.journeystore.feature_addjourney.AddJourneyViewModel;
+import com.liam191.journeystore.repo.FakeJourneyRepositoryImpl;
 import com.liam191.journeystore.repo.JourneyRepository;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
-public class JourneyStoreViewModelFactory implements ViewModelProvider.Factory {
+public class FakeJourneyStoreViewModelFactory extends JourneyStoreViewModelFactory {
 
-    private static final String TAG = JourneyStoreViewModelFactory.class.getSimpleName();
-    private final JourneyRepository journeyRepository;
+    private static final String TAG = FakeJourneyStoreViewModelFactory.class.getSimpleName();
+    private JourneyRepository journeyRepository;
 
-    public JourneyStoreViewModelFactory(JourneyRepository journeyRepository){
+    public FakeJourneyStoreViewModelFactory(JourneyRepository journeyRepository){
+        super(journeyRepository);
         Log.i(TAG, "testingJourneyStore... journeyStoreViewModelFactory journeyRepo: "+ journeyRepository.toString());
         this.journeyRepository = journeyRepository;
     }
@@ -27,5 +28,13 @@ public class JourneyStoreViewModelFactory implements ViewModelProvider.Factory {
             return (T) new AddJourneyViewModel(journeyRepository);
         }
         throw new IllegalArgumentException(String.format("Requested class %s did not match expected class %s.", modelClass, AddJourneyViewModel.class));
+    }
+
+    public void setJourneyRepository(JourneyRepository journeyRepository){
+        this.journeyRepository = journeyRepository;
+    }
+
+    public FakeJourneyRepositoryImpl getJourneyRepository(){
+        return (FakeJourneyRepositoryImpl)journeyRepository;
     }
 }

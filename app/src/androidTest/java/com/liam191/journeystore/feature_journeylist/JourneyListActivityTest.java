@@ -39,7 +39,7 @@ public class JourneyListActivityTest {
     @Before
     public void setup(){
         fakeJourneyRepository = new FakeJourneyRepositoryImpl();
-        FakeJourneyStoreApplication.createViewModelFactoryForApplication(journeyListActivity, fakeJourneyRepository);
+        FakeJourneyStoreApplication.setFactoryJourneyRepository(fakeJourneyRepository);
     }
 
     @Test

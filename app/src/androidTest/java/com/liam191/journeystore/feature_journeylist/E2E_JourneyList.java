@@ -62,7 +62,7 @@ public class E2E_JourneyList {
     public void setup(){
         // Use real JourneyRepository in E2E tests.
         realJourneyRepository = new JourneyRepositoryImpl();
-        FakeJourneyStoreApplication.createViewModelFactoryForApplication(journeyListActivity, realJourneyRepository);
+        FakeJourneyStoreApplication.setFactoryJourneyRepository(realJourneyRepository);
     }
 
     private void clearJourneyLocalDatabase() {

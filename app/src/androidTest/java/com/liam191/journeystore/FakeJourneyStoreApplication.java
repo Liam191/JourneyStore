@@ -1,7 +1,9 @@
 package com.liam191.journeystore;
 
-import android.app.Application;
+import android.util.Log;
 
+import com.liam191.journeystore.feature_addjourney.AddJourneyActivity;
+import com.liam191.journeystore.feature_journeylist.JourneyListActivity;
 import com.liam191.journeystore.repo.FakeJourneyRepositoryImpl;
 import com.liam191.journeystore.repo.JourneyRepository;
 
@@ -9,11 +11,18 @@ import androidx.test.rule.ActivityTestRule;
 
 public class FakeJourneyStoreApplication extends JourneyStoreApplication {
 
-    private JourneyStoreViewModelFactory journeyStoreViewModelFactory;
+    private static final String TAG = FakeJourneyStoreApplication.class.getSimpleName();
+    private final FakeJourneyStoreViewModelFactory fakeJourneyStoreViewModelFactory;
+    private static FakeJourneyStoreApplication instance;
 
     {
-        createViewModelFactoryWithRepository(new FakeJourneyRepositoryImpl());
+        instance = this;
+        JourneyRepository defaultJourneyRepo = new FakeJourneyRepositoryImpl();
+        Log.i(TAG, "testingJourneyStore... defaultJourneyRepo: "+ defaultJourneyRepo.toString());
+
+        fakeJourneyStoreViewModelFactory = new FakeJourneyStoreViewModelFactory(defaultJourneyRepo);
     }
+
 
     @Override
     public void onCreate() {
@@ -22,20 +31,18 @@ public class FakeJourneyStoreApplication extends JourneyStoreApplication {
 
     @Override
     public JourneyStoreViewModelFactory getViewModelFactory(){
-        return journeyStoreViewModelFactory;
+        return fakeJourneyStoreViewModelFactory;
     }
 
-    // Creates a new JourneyStoreViewModelFactory with the specified JourneyRepository reference.
-    // This is done to create fresh instances for each test and to use real or fake JourneyRepositories
-    // as needed. Likely slower than just setting the JourneyRepository of the ViewModel factory, but
-    // easier than creating and managing a fake with its own overridden methods and fake repository.
-    private void createViewModelFactoryWithRepository(JourneyRepository journeyRepository){
-        this.journeyStoreViewModelFactory = new JourneyStoreViewModelFactory(journeyRepository);
+    public static JourneyRepository getFactoryJourneyRepository() {
+        return instance.fakeJourneyStoreViewModelFactory.getJourneyRepository();
     }
 
-    // Static method to avoid duplicating lengthy code and casting in every test class.
-    public static void createViewModelFactoryForApplication(ActivityTestRule activity, JourneyRepository journeyRepository){
-        ((FakeJourneyStoreApplication) activity.getActivity().getApplication())
-                .createViewModelFactoryWithRepository(journeyRepository);
+    public static void setFactoryJourneyRepository(JourneyRepository journeyRepository) {
+        instance.fakeJourneyStoreViewModelFactory.setJourneyRepository(journeyRepository);
+    }
+
+    public static void resetFactoryJourneyRepository() {
+        instance.fakeJourneyStoreViewModelFactory.getJourneyRepository().reset();
     }
 }
