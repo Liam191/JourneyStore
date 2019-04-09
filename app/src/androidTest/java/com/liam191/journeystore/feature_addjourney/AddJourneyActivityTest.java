@@ -2,6 +2,7 @@ package com.liam191.journeystore.feature_addjourney;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.util.Log;
 
 import com.liam191.journeystore.FakeJourneyStoreApplication;
 import com.liam191.journeystore.R;

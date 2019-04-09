@@ -9,7 +9,6 @@ import android.widget.EditText;
 
 import com.liam191.journeystore.JourneyStoreApplication;
 import com.liam191.journeystore.R;
-import com.liam191.journeystore.repo.Journey;
 
 import static com.liam191.journeystore.utils.InputFieldUtil.*;
 
@@ -35,7 +34,7 @@ public class AddJourneyActivity extends AppCompatActivity {
     }
 
     private void saveJourneyDataToViewModel(){
-//        addJourneyViewModel.setDepartureText(departureTextField.getText().toString());
+        addJourneyViewModel.setDepartureText(departureTextField.getText().toString());
     }
 
     public void onSubmit(View view) {
