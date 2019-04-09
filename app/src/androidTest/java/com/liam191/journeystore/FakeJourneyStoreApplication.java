@@ -2,17 +2,16 @@ package com.liam191.journeystore;
 
 import android.util.Log;
 
-import com.liam191.journeystore.feature_addjourney.AddJourneyActivity;
-import com.liam191.journeystore.feature_journeylist.JourneyListActivity;
 import com.liam191.journeystore.repo.FakeJourneyRepositoryImpl;
 import com.liam191.journeystore.repo.JourneyRepository;
-
-import androidx.test.rule.ActivityTestRule;
+import com.liam191.journeystore.repo.JourneyRepositoryImpl;
+import com.liam191.journeystore.repo.LocalJourneyStoreRoomDBImpl;
+import com.liam191.journeystore.repo.localStore.LocalJourneyStore;
 
 public class FakeJourneyStoreApplication extends JourneyStoreApplication {
 
     private static final String TAG = FakeJourneyStoreApplication.class.getSimpleName();
-    private final FakeJourneyStoreViewModelFactory fakeJourneyStoreViewModelFactory;
+    private JourneyStoreViewModelFactory journeyStoreViewModelFactory;
     private static FakeJourneyStoreApplication instance;
 
     {
@@ -20,7 +19,7 @@ public class FakeJourneyStoreApplication extends JourneyStoreApplication {
         JourneyRepository defaultJourneyRepo = new FakeJourneyRepositoryImpl();
         Log.i(TAG, "testingJourneyStore... defaultJourneyRepo: "+ defaultJourneyRepo.toString());
 
-        fakeJourneyStoreViewModelFactory = new FakeJourneyStoreViewModelFactory(defaultJourneyRepo);
+        journeyStoreViewModelFactory = new FakeJourneyStoreViewModelFactory(defaultJourneyRepo);
     }
 
 
@@ -31,18 +30,30 @@ public class FakeJourneyStoreApplication extends JourneyStoreApplication {
 
     @Override
     public JourneyStoreViewModelFactory getViewModelFactory(){
-        return fakeJourneyStoreViewModelFactory;
+        return journeyStoreViewModelFactory;
+    }
+
+    public static void useRealViewModelFactory(){
+        LocalJourneyStore localStore = new LocalJourneyStoreRoomDBImpl();
+        //JourneyRepository realJourneyRepo = new JourneyRepositoryImpl(localStore);
+        JourneyRepository realJourneyRepo = new JourneyRepositoryImpl();
+        instance.journeyStoreViewModelFactory = new JourneyStoreViewModelFactory(realJourneyRepo);
+    }
+
+    public static void useFakeViewModelFactory(){
+        JourneyRepository fakeJourneyRepo = new FakeJourneyRepositoryImpl();
+        instance.journeyStoreViewModelFactory = new FakeJourneyStoreViewModelFactory(fakeJourneyRepo);
     }
 
     public static JourneyRepository getFactoryJourneyRepository() {
-        return instance.fakeJourneyStoreViewModelFactory.getJourneyRepository();
+        return ((FakeJourneyStoreViewModelFactory) instance.journeyStoreViewModelFactory).getJourneyRepository();
     }
 
     public static void setFactoryJourneyRepository(JourneyRepository journeyRepository) {
-        instance.fakeJourneyStoreViewModelFactory.setJourneyRepository(journeyRepository);
+        ((FakeJourneyStoreViewModelFactory) instance.journeyStoreViewModelFactory).setJourneyRepository(journeyRepository);
     }
 
     public static void resetFactoryJourneyRepository() {
-        instance.fakeJourneyStoreViewModelFactory.getJourneyRepository().reset();
+        ((FakeJourneyStoreViewModelFactory) instance.journeyStoreViewModelFactory).getJourneyRepository().reset();
     }
 }

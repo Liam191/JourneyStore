@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.util.Log;
 
 import com.liam191.journeystore.FakeJourneyStoreApplication;
+import com.liam191.journeystore.FakeJourneyStoreViewModelFactory;
 import com.liam191.journeystore.R;
 import com.liam191.journeystore.repo.FakeJourneyRepositoryImpl;
 import com.liam191.journeystore.repo.Journey;
@@ -53,6 +54,7 @@ public class AddJourneyActivityTest {
 
     @BeforeClass
     public static void classSetup(){
+        FakeJourneyStoreApplication.useFakeViewModelFactory();
         resetJourneyRepository();
     }
 
@@ -66,6 +68,11 @@ public class AddJourneyActivityTest {
     public void teardown(){
         resetJourneyRepository();
     }
+
+    private static void resetJourneyRepository() {
+        FakeJourneyStoreApplication.resetFactoryJourneyRepository();
+    }
+
 
     // Assert UI elements are displayed.
     @Test
@@ -153,10 +160,5 @@ public class AddJourneyActivityTest {
         Log.i(TAG, "testingJourneyStore... fakeJourneyRep instance: "+ fakeJourneyRepository.toString());
 //        Log.i(TAG, "testingJourneyStore... fakeJourneyRep journeyList: "+ fakeJourneyRepository.getJourneys().getValue());
         assertThat(fakeJourneyRepository.getJourneys().getValue(), hasItem(journeyToMatch));
-    }
-
-
-    private static void resetJourneyRepository() {
-        FakeJourneyStoreApplication.resetFactoryJourneyRepository();
     }
 }

@@ -13,6 +13,7 @@ import com.liam191.journeystore.repo.JourneyRepositoryImpl;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,12 +59,28 @@ public class E2E_JourneyList {
 
     JourneyRepository realJourneyRepository;
 
+    @BeforeClass
+    public static void classSetup(){
+        FakeJourneyStoreApplication.useRealViewModelFactory();
+        resetJourneyRepository();
+    }
+
     @Before
     public void setup(){
-        // Use real JourneyRepository in E2E tests.
         realJourneyRepository = new JourneyRepositoryImpl();
         FakeJourneyStoreApplication.setFactoryJourneyRepository(realJourneyRepository);
     }
+
+    @After
+    public void teardown(){
+        resetJourneyRepository();
+    }
+
+    private static void resetJourneyRepository() {
+        FakeJourneyStoreApplication.resetFactoryJourneyRepository();
+    }
+
+
 
     private void clearJourneyLocalDatabase() {
 //        LiveData<List<Journey>> journeyList = fakeJourneyRepositoryComponent.getJourneyRepository().getJourneys();
@@ -102,11 +119,5 @@ public class E2E_JourneyList {
         // JourneyDetailsActivity
 //        onView(withId(R.id.journey_departure_txt)).check(matches(withText(departureLocationToBeTyped)));
 //        onView(withId(R.id.journey_destination_txt)).check(matches(withText(destinationToBeTyped)));
-    }
-
-
-    @After
-    public void teardown(){
-        clearJourneyLocalDatabase();
     }
 }

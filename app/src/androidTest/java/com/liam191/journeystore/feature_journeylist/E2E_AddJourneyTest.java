@@ -1,5 +1,7 @@
 package com.liam191.journeystore.feature_journeylist;
 
+import android.util.Log;
+
 import com.liam191.journeystore.FakeJourneyStoreApplication;
 import com.liam191.journeystore.FakeJourneyStoreViewModelFactory;
 import com.liam191.journeystore.JourneyStoreApplication;
@@ -9,7 +11,9 @@ import com.liam191.journeystore.repo.FakeJourneyRepositoryImpl;
 import com.liam191.journeystore.repo.JourneyRepository;
 import com.liam191.journeystore.repo.JourneyRepositoryImpl;
 
+import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,12 +51,28 @@ public class E2E_AddJourneyTest {
     @Rule
     public ActivityTestRule<JourneyListActivity> journeyListActivity = new ActivityTestRule<>(JourneyListActivity.class);
 
+
+    @BeforeClass
+    public static void classSetup(){
+        FakeJourneyStoreApplication.useRealViewModelFactory();
+        resetJourneyRepository();
+    }
+
     @Before
     public void setup(){
-        // Use real JourneyRepository in E2E tests.
         realJourneyRepository = new JourneyRepositoryImpl();
         FakeJourneyStoreApplication.setFactoryJourneyRepository(realJourneyRepository);
     }
+
+    @After
+    public void teardown(){
+        resetJourneyRepository();
+    }
+
+    private static void resetJourneyRepository() {
+        FakeJourneyStoreApplication.resetFactoryJourneyRepository();
+    }
+
 
     @Test
     public void addNewJourney(){
